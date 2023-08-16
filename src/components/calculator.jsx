@@ -1,0 +1,100 @@
+import React, { useEffect, useState } from "react";
+import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
+
+function Calculator() {
+    const [inputCurrency, setInputCurrency] = useState('TRY');
+    const [inputAmount, setInputAmount] = useState('0');
+    const [outputCurrency, setOutputCurrency] = useState('USD');
+    const [outputAmount, setOutputAmount] = useState('0');
+    const [exchangeRate, setExchangeRate] = useState(null);
+  
+    // Function to calculate the exchange amount
+    const calculateExchange = () => {
+      if (!exchangeRate) return;
+  
+      const calculatedAmount = parseFloat(inputAmount) * exchangeRate;
+      setOutputAmount(calculatedAmount.toFixed(2));
+    };
+  
+    // Function to fetch exchange rate
+    const fetchExchangeRate = async () => {
+      // Replace this with your API call to fetch exchange rate based on inputCurrency and outputCurrency
+      // For now, I'm setting an example exchange rate
+      const exampleExchangeRate = 0.85;
+      setExchangeRate(exampleExchangeRate);
+  
+      calculateExchange();
+    };
+    // Use useEffect to fetch exchange rate whenever inputCurrency or outputCurrency changes
+  useEffect(() => {
+    fetchExchangeRate();
+  }, [inputCurrency, outputCurrency]);
+
+  // Use useEffect to calculate exchange amount whenever inputAmount changes
+  useEffect(() => {
+    calculateExchange();
+  }, [inputAmount]);
+
+  return (
+    <div className="None">
+      <div className="flex gap-4">
+        <select
+          value={inputCurrency}
+          onChange={(e) => setInputCurrency(e.target.value)}
+          className="font-bold text-1.5rem p-1 bg-white text-black rounded-md"
+          name=""
+          id="input_currency"
+        >
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="USD">USD</option>
+          <option value="TRY" selected>
+            TRY
+          </option>
+        </select>
+        <input
+          type="text"
+          value={inputAmount}
+          onChange={(e) => setInputAmount(e.target.value)}
+          className="color-zinc-950 mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+        />
+      </div>
+      <div className="flex w-full text-center items-center justify-center p-5  ">
+        <button
+          className="flex items-center justify-center bg-slate-800 rounded-full p-2 w-[4rem] h-[4rem] text-[2rem] font-bold border-solid border-2 border-sky-500"
+    
+          id="exchange"
+        >
+          <HiMiniArrowPathRoundedSquare className="" />
+        </button>
+      </div>
+      <div className="flex gap-4">
+        <select
+          className="font-bold  p-1 bg-white text-black rounded-md"
+          id="output_currency"
+        >
+         value={outputCurrency}
+          onChange={(e) => setOutputCurrency(e.target.value)}
+          <option value="EUR">EUR</option>
+          <option value="TRY">TRY</option>
+          <option value="GBP">GBP</option>
+          <option value="USD" selected>
+            USD
+          </option>
+        </select>
+        <input
+          value={outputAmount}
+          readOnly
+          type="text"
+          className="color-zinc-950 mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+        />
+      </div>
+      <div class="result">
+        <div class="rate" id="rate"></div>
+        {exchangeRate && `Exchange Rate: 1 ${inputCurrency} = ${exchangeRate.toFixed(2)} ${outputCurrency}`}
+      </div>
+    </div>
+  );
+}
+
+export default Calculator;

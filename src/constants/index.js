@@ -1,21 +1,11 @@
 import {
-  dollar,
-  Euro,
-  yen,
-  Russian,
-  Pound1,
-  swiss,
-  tl,
-  yuan,
-  australian,
-  indian,
-  canadian,
-  south,
-  dimension,
+  eurogif,
   dolargif,
   Poundgif,
+
   orangeup,
   orangeupother,
+
   musmerpic,
   musmerpicc,
   musmerpiccc,
@@ -28,16 +18,16 @@ export const navLinks = [
     title: "Canlı Kur",
   },
   {
+    id: "calculator",
+    title: "Döviz Hesaplayıcısı",
+  },
+  {
     id: "work",
     title: "Hakkımızda",
   },
   {
-    id: "contact",
-    title: "Bize Ulaşın",
-  },
-  {
-    id:"calculator",
-    title:"Döviz Hesaplayıcı"
+    id:"contact",
+    title:"Bize ulaşın"
   }
 ];
 
@@ -48,7 +38,7 @@ let services = [
   },
   {
     title: "Euro",
-    icon: dimension,
+    icon: eurogif,
   },
   {
     title: "Pound",
@@ -57,60 +47,7 @@ let services = [
  
 ];
 
-const technologies = [
-  {
-    name: "Dolar",
-    icon: dollar,
-  },
-  {
-    name: "Euro",
-    icon: Euro,
-  },
-  {
-    name: "Pound",
-    icon: Pound1,
-  },
-  {
-    name: "yen",
-    icon: yen,
-  },
-  {
-    name: "Russian",
-    icon: Russian,
-  },
-  {
-    name: "Pound1",
-    icon: Pound1,
-  },
-  {
-    name: "swiss",
-    icon: swiss,
-  },
-  {
-    name: "tl",
-    icon: tl,
-  },
-  {
-    name: "yuan",
-    icon: yuan,
-  },
-  {
-    name: "australian",
-    icon: australian,
-  },
-  {
-    name: "indian",
-    icon: indian,
-  },
-  {
-    name: "canadian",
-    icon: canadian,
-  },
-  {
-    name: "south",
-    icon: south,
-  },
-];
+
 
 const experiences = [
   {
@@ -233,4 +170,4 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, experiences, testimonials, projects };

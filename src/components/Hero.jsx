@@ -1,24 +1,22 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { services } from "../constants";
 import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
-
 import { SectionWrapper } from "../hoc";
-import { dimension,
-  dolargif,
-  Poundgif, } from '../assets';
+import { eurogif,dolargif,Poundgif, } from '../assets';
 
 
 
-const MyServiceCard = ({ index, buying, seling,  icon }) => (
+const MyServiceCard = ({ index, buying, seling,  icon , currencyPair}) => (
   <div className='xs:w-[250px] w-full'>
      
     <motion.div
       variants={fadeIn("right", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
+      
     >
+      
       <div
         options={{
           max: 45,
@@ -29,11 +27,17 @@ const MyServiceCard = ({ index, buying, seling,  icon }) => (
       >
         <img
           src={icon}
-          alt='web-development'
+          alt='Currency'
           className='w-16 h-16 object-contain'
         />
-
-        <div className='text-white w-full text-[20px] font-bold flex flex-row text-center justify-around items-center '>
+         <div className=" w-full flex flex-row items-center justify-center gap">
+            <h1>{currencyPair}</h1>
+         </div>
+        <div className="text-white w-full text-[15px] font-bold flex flex-row text-center md:gap-0 gap-3 justify-around items-center ">
+            <span className='text-green-400 '>ALIŞ</span>     <span className='text-red-600 '>SATIŞ</span>
+         </div>
+        <div className='text-white w-full text-[20px] font-bold flex flex-row text-center md:gap-0 gap-3 justify-around items-center '>
+         
            <span className='text-green-400'>{buying}</span>     <span className='text-red-600'>{seling}</span>
         </div>
       </div>
@@ -127,18 +131,21 @@ const Hero = () => {
           ))} */}
           <MyServiceCard 
           icon={dolargif}
-          buying={USDtoTL}
+          buying={USDtoTL} 
           seling={USDtoTLs}
+          currencyPair="USD/TL"
           />
           <MyServiceCard 
-          icon={dimension}
+          icon={eurogif}
           buying={EURtoTL}
           seling={EURtoTLs}
+          currencyPair="EURO/TL"
           />
           <MyServiceCard 
           icon={Poundgif}
           buying={GBPtoTL}
           seling={GBPtoTLs}
+          currencyPair="GBP/TL"
           />
       </div> 
      </div>

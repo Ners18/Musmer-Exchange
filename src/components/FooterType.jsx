@@ -1,19 +1,21 @@
 import React from 'react';
-import { AiFillInstagram } from "react-icons/ai";
+import { AiFillInstagram, } from "react-icons/ai";
+import { BsFillTelephoneFill} from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
 
 function FooterType() {
   return (
     <div>
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div class="md:flex md:justify-between">
-          <div class="mb-6 md:mb-0">
-              <a href="https://flowbite.com/" class="flex items-center">
-                  <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" />
+          <div class="mb-6 md:mb-0 md:w-[29%]">
+              <a class="flex items-center">
+                  <img src="\src\assets\musmerlogo.png" class="h-8 mr-3" alt="Musmer Logo" />
                   <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Musmer LTD</span>
               </a>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div className=""></div>
+          <div class=" flex gap-8 sm:gap-6 sm: flex-1 p-30 justify-evenly text-sx">
+            {/* <div className=""></div> */}
              {/*  <div>
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Resources</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
@@ -37,22 +39,28 @@ function FooterType() {
                      
                   </ul>
               </div>
-              <div>
-                  <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Contact</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                        <a href="tel:+905338728888" class="hover:underline">Phone:+90 392 444 88 22"</a>
-                      </li>
-                      <li>
-                        <a href="mailto:info@musmerexchange.com" class="hover:underline">e-mail:info@musmerexchange.com</a>
-                      </li>
-                  </ul>
-              </div>
+              <div className='flex-row justify-between items-center'>
+                <h2 className="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Contact</h2>
+                    <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                    <li className="mb-4 flex items-center">
+                        <BsFillTelephoneFill className="mr-2" />
+                        <a href="tel:+905338728888" className="hover:underline">
+                            +90 392 444 88 22
+                        </a>
+                    </li>
+                        <li className='text-sx flex items-center'>
+                           <MdEmail className="mr-2"/> 
+                            <a href="mailto:info@musmerexchange.com" className="hover:underline">
+                                info@musmerexchange.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
           </div>
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Musmer Exchange</a>. All Rights Reserved. Built by CyprusCodes™
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a class="hover:underline">Musmer Exchange</a>. All Rights Reserved. Built by CyprusCodes™
           </span>
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
               <a href="https://www.facebook.com/musmerexchange" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -63,7 +71,7 @@ function FooterType() {
               </a>
               <a href="https://www.instagram.com/musmer_exchange/" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                <AiFillInstagram className='w-4 h-4'></AiFillInstagram> 
-                  <span class="sr-only">İnstegram community</span>
+                  <span class="sr-only">Instagram community</span>
               </a>
               <a href="https://twitter.com/musmerltd" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                   <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
