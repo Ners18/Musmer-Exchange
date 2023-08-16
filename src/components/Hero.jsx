@@ -12,7 +12,7 @@ const MyServiceCard = ({ index, buying, seling,  icon , currencyPair}) => (
   <div className='xs:w-[250px] w-full'>
      
     <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
+      variants={fadeIn("up", "spring", index * 0.5, 0.75)}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
       
     >
@@ -30,7 +30,7 @@ const MyServiceCard = ({ index, buying, seling,  icon , currencyPair}) => (
           alt='Currency'
           className='w-16 h-16 object-contain'
         />
-         <div className=" w-full flex flex-row items-center justify-center gap">
+         <div className=" w-full flex flex-row items-center justify-center font-bold text-slate-400 ">
             <h1>{currencyPair}</h1>
          </div>
         <div className="text-white w-full text-[15px] font-bold flex flex-row text-center md:gap-0 gap-3 justify-around items-center ">
@@ -133,19 +133,19 @@ const Hero = () => {
           icon={dolargif}
           buying={USDtoTL} 
           seling={USDtoTLs}
-          currencyPair="USD/TL"
+          currencyPair="USD / TL"
           />
           <MyServiceCard 
           icon={eurogif}
           buying={EURtoTL}
           seling={EURtoTLs}
-          currencyPair="EURO/TL"
+          currencyPair="EURO / TL"
           />
           <MyServiceCard 
           icon={Poundgif}
           buying={GBPtoTL}
           seling={GBPtoTLs}
-          currencyPair="GBP/TL"
+          currencyPair="GBP / TL"
           />
       </div> 
      </div>

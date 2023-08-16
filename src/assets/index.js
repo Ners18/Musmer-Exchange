@@ -1,5 +1,7 @@
 
 import musmerlogo from "./musmerlogo.png";
+import musmerlogo1 from "./musmerlogo1.png";
+import mmm from "./mmm.png";
 
 import github from "./github.png";
 import menu from "./menu.svg";
@@ -25,6 +27,8 @@ export {
   
 
   musmerlogo,
+  musmerlogo1,
+  mmm,
 
   github,
   menu,
