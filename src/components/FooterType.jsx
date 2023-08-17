@@ -15,18 +15,7 @@ function FooterType() {
               </a>
           </div>
           <div class=" flex gap-8 sm:gap-6 sm: flex-1 p-30 justify-evenly text-sx">
-            {/* <div className=""></div> */}
-             {/*  <div>
-                  <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Resources</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <a href="https://flowbite.com/" class="hover:underline">Flowbite</a>
-                      </li>
-                      <li>
-                          <a href="https://tailwindcss.com/" class="hover:underline">Tailwind CSS</a>
-                      </li>
-                  </ul>
-              </div> */}
+          
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Follow us</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
@@ -60,7 +49,7 @@ function FooterType() {
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div class="sm:flex sm:items-center sm:justify-between">
-          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a class="hover:underline">Musmer Exchange</a>. All Rights Reserved. Built by CyprusCodes™
+          <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 Musmer Exchange. All Rights Reserved. Built by <a className='hover:underline' href='https://cypruscodes.com/index.html'>CyprusCodes™</a>
           </span>
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
               <a href="https://www.facebook.com/musmerexchange" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
