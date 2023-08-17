@@ -10,8 +10,8 @@ function FooterType() {
         <div class="md:flex md:justify-between">
           <div class="mb-6 md:mb-0 md:w-[29%]">
               <a class="flex items-center">
-                  <img src="\src\assets\musmerlogo.png" class="h-8 mr-3" alt="Musmer Logo" />
-                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Musmer LTD</span>
+                  <img src="src\assets\musmerlogo1.png" class="h-8 mr-3" alt="Musmer Logo" />
+                  <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Musmer Exchange</span>
               </a>
           </div>
           <div class=" flex gap-8 sm:gap-6 sm: flex-1 p-30 justify-evenly text-sx">
