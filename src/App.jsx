@@ -2,16 +2,14 @@ import { BrowserRouter } from "react-router-dom";
 
 import { About, Contact, Experience, Feedbacks, Hero, Navbar, Works, StarsCanvas, } from "./components";
 import FooterType from "./components/FooterType";
+import Main from "./components/Main";
 
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center h-[1000px] md:h-fit'>
-          <Navbar />
-          <Hero />
-        </div>
+        <Main />
         <About />
         <Feedbacks />
         <Experience />
