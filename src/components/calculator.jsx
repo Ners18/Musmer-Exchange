@@ -78,7 +78,7 @@ function Calculator() {
             setInputCurrency(outputCurrency);
             setOutputCurrency(inputCurrency);
           }}
-          className="flex items-center justify-center bg-slate-800 rounded-full p-2 w-[4rem] h-[4rem] text-[2rem] font-bold border-solid border-2 border-sky-500"
+          className="flex items-center justify-center bg-slate-800 rounded-full p-2 w-[4rem] h-[4rem] text-[2rem] font-bold border-solid border-2 border-sky-500 active:translate-y-0 bg-gray-800 hover:bg-gray-700 active:bg-gray-900 active:shadow-md active:translate-y-[-2px] p-4 "
           id="exchange"
         >
           <HiMiniArrowPathRoundedSquare className="" />

@@ -107,24 +107,24 @@ const Hero = () => {
               Güvenilir Doviz İşlemleri.
             </p>
           </div>
-          <div className="mt-20 flex  gap-10 flex-col md:flex-row  justify-center md:items-center">
+          <div className="mt-20 flex  font-bold gap-10 flex-col md:flex-row  justify-center md:items-center">
             <MyServiceCard
               icon={dolargif}
               buying={USDtoTL}
               seling={USDtoTLs}
-              currencyPair="USD/TL"
+              currencyPair="USD / TL"
             />
             <MyServiceCard
               icon={eurogif}
               buying={EURtoTL}
               seling={EURtoTLs}
-              currencyPair="EURO/TL"
+              currencyPair="EURO / TL"
             />
             <MyServiceCard
               icon={Poundgif}
               buying={GBPtoTL}
               seling={GBPtoTLs}
-              currencyPair="GBP/TL"
+              currencyPair="GBP / TL"
             />
           </div>
         </div>
