@@ -14,7 +14,7 @@ import {
 
 export const navLinks = [
   {
-    id: "Hero",
+    id: "hero",
     title: "Canlı Kur",
   },
   {

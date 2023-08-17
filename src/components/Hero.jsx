@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
 import { eurogif, dolargif, Poundgif } from "../assets";
 
+
 const MyServiceCard = ({ index, buying, seling, icon, currencyPair }) => (
   <div className="xs:w-[250px] w-full">
     <motion.div
@@ -93,7 +94,7 @@ const Hero = () => {
 
   return (
     <>
-      <div className={`relative w-full h-fill md:h-screen  mx-auto`}>
+      <div className={`relative w-full h-fill md:h-screen  mx-auto`} id="hero">
         <div className="flex items-center justify-center flex-col pt-20">
           <div className="mt-20">
             <h1

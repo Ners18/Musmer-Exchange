@@ -61,7 +61,7 @@ function Calculator() {
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
           <option value="USD">USD</option>
-          <option value="TRY" selected>
+          <option value="TRY" >
             TRY
           </option>
         </select>
@@ -95,7 +95,7 @@ function Calculator() {
           <option value="EUR">EUR</option>
           <option value="TRY">TRY</option>
           <option value="GBP">GBP</option>
-          <option value="USD" selected>
+          <option value="USD" >
             USD
           </option>
         </select>
