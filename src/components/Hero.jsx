@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
-import { eurogif, dolargif, Poundgif } from "../assets";
+import { eurogif, dolar,dolargif, Poundgif } from "../assets";
 
 
 const MyServiceCard = ({ index, buying, seling, icon, currencyPair }) => (

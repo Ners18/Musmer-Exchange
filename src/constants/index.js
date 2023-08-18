@@ -2,7 +2,7 @@ import {
   eurogif,
   dolargif,
   Poundgif,
-
+  dolar,
   orangeup,
   orangeupother,
 

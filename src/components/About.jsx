@@ -15,7 +15,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] sm:mt-40px'
+        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] '
       >
         Musmer Exchange, KKTC Döviz piyasasındaki ihtiyaçları görüp bu ihtiyaçları karşılamak için yola çıkan bir döviz bürosudur. 
         Bir Musmer Limited kuruluşu olan Musmer Exchange, ticari yaşamındaki iş yaptığı farklı sektörlerde, yıllarca edinilen 

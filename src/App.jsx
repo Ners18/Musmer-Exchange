@@ -10,6 +10,7 @@ const App = () => {
     <BrowserRouter>
       <div className='relative z-0 bg-primary'>
         <Main />
+        
         <About />
         <Feedbacks />
         <Experience />
@@ -18,6 +19,7 @@ const App = () => {
           <Contact />
           <StarsCanvas />
         </div>
+
         <FooterType />
       </div>
     </BrowserRouter>
