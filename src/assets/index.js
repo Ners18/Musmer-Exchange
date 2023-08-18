@@ -1,13 +1,14 @@
 
 import musmerlogo from "./musmerlogo.png";
 import musmerlogo1 from "./musmerlogo1.png";
+import musmerlogo11 from "./musmer_exchange-white-lggo.png/"
 import mmm from "./mmm.png";
 
 import github from "./github.png";
 import menu from "./menu.svg";
 import close from "./close.svg";
 
-
+import dolar from "./tech/dolllar.png";
 import Poundgif from "./tech/poundSpinning.gif";
 import dolargif from "./tech/dollarSpinning.gif";
 import eurogif from "./tech/euroSpinning.gif";
@@ -29,6 +30,7 @@ export {
   musmerlogo,
   musmerlogo1,
   mmm,
+  musmerlogo11,
 
   github,
   menu,
@@ -39,6 +41,7 @@ export {
   musmerpicc,
   musmerpic,
 
+  dolar,
   eurogif,
   dolargif,
   Poundgif,
