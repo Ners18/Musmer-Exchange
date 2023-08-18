@@ -9,8 +9,9 @@ const About = () => {
   return (
     <>
       <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}></p>
+        <div className="pt-10">
         <h2 className={styles.sectionHeadText}>Bizim <span className='text-[rgb(255,112,13)]'>Hikayemiz</span></h2>
+        </div>
       </motion.div>
 
       <motion.p
