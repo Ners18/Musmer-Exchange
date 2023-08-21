@@ -7,7 +7,9 @@ import { fadeIn, textVariant } from "../utils/motion";
 
 const About = () => {
   return (
+    
     <>
+    <div className="pt-[5.5rem] ">
       <motion.div variants={textVariant()}>
         <div className="pt-10">
         <h2 className={styles.sectionHeadText}>Bizim <span className='text-[rgb(255,112,13)]'>Hikayemiz</span></h2>
@@ -16,7 +18,7 @@ const About = () => {
 
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px] '
+        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
         Musmer Exchange, KKTC Döviz piyasasındaki ihtiyaçları görüp bu ihtiyaçları karşılamak için yola çıkan bir döviz bürosudur. 
         Bir Musmer Limited kuruluşu olan Musmer Exchange, ticari yaşamındaki iş yaptığı farklı sektörlerde, yıllarca edinilen 
@@ -25,8 +27,9 @@ const About = () => {
         ulaşmak için durmadan çalışmaktadır.
       </motion.p>
 
-      
+      </div>
     </>
+    
   );
 };
 
