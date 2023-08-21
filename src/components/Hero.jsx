@@ -93,12 +93,12 @@ const Hero = () => {
   const GBPtoTLs = formatRate(exchangeRatesGbp.TRY + 0.45);
 
   return (
-    <>
+    //<>
       <div className={`relative w-full h-fill md:h-screen  mx-auto`} id="hero">
         <div className="flex items-center justify-center flex-col pt-20">
           <div className="mt-20 px-2">
             <h1
-              className={`${styles.heroHeadText} text-white font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2`}
+              className={`${styles.heroHeadText} pt-[4rem] text-white font-black text-white lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2`}
             >
               Musmer <span className="text-[rgb(255,112,13)]">Exchange</span>
             </h1>
@@ -108,7 +108,7 @@ const Hero = () => {
               Güvenilir Doviz İşlemleri.
             </p>
           </div>
-          <div className="mt-20 flex  font-bold gap-10 flex-col md:flex-row  justify-center md:items-center">
+          <div className="md:mt-20 sm:mt-[2rem] gap-[2rem] flex font-bold md:gap-10 flex-col md:flex-row justify-center md:items-center">
             <MyServiceCard
               icon={dolargif}
               buying={USDtoTL}
@@ -130,7 +130,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </>
+    //</>
   );
 };
 
