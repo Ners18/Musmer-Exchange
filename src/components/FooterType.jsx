@@ -50,7 +50,7 @@ function FooterType() {
       </div>
       <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 Musmer Exchange. All Rights Reserved. Built by <a className='hover:underline' href='https://cypruscodes.com/index.html'>CyprusCodes™</a>
+          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 Musmer Exchange. All Rights Reserved. Built by <a className='underline' href='https://cypruscodes.com/index.html'>CyprusCodes™</a>
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
               <a href="https://www.facebook.com/musmerexchange" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">

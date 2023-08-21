@@ -10,7 +10,7 @@ import Calculator from "./calculator";
 const FeedbackCard = ({ index }) => (
   <motion.div
     variants={fadeIn("", "spring", index * 0.5, 0.75)}
-    className="p-10 rounded-3xl flex-grow items-center justify-center "
+    className="p-10 rounded-[2rem] flex-grow items-center justify-center "
   >
     <Calculator />
   </motion.div>
@@ -23,7 +23,7 @@ const Feedbacks = () => {
         className={`mt-0.1 bg-black-100 rounded-[20px] items-center flex flex-col justify-center`}
       >
         <div
-          className={`bg-black-100 rounded-2xl ${styles.padding} min-h-[300px] items-center`}
+          className={`bg-black-100 rounded-2xl sm:px-16 px-6 mt-2 sm:py-12 py-10 min-h-[160px] items-center`}
         >
           <motion.div variants={textVariant()}>
             <h2 className={styles.sectionHeadText}>Doviz kuru hesaplayıcı</h2>

@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -8,60 +8,37 @@ import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 
 const Contact = () => {
-  const formRef = useRef();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
-    setForm({
-      ...form,
-      [name]: value,
-    });
-  };
+  const [name, SetName] = useState("");
+  const [email, SetEmail] = useState("");
+  const [message, SetMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Musmer Exchange",
-          from_email: form.email,
-          to_email: "info@musmerexchange.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    const data = {
+      Name: name,
+      Email: email,
+      Message: message,
+    };
+    axios
+      .post(
+        "https://sheet.best/api/sheets/756373fb-6475-4606-845c-826dde825404",
+        data
       )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Teşekkürler en kısa sürede size döneceğiz !");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Bişeyler hatalı gitdi, lütfen başdan deneyin !");
-        }
-      );
+      .then((response) => {
+        console.log(response);
+        SetName("");
+        SetEmail("");
+        SetMessage("");
+        setSent(true);
+        setLoading(false);
+        setTimeout(()=>{
+          setSent(false);
+        },3000);
+      });
   };
 
   return (
@@ -70,62 +47,66 @@ const Contact = () => {
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className='flex-[0.75] bg-black-100 p-8 rounded-2xl'
+        className="flex-[0.75] bg-black-100 p-8 rounded-2xl"
       >
         <p className={styles.sectionSubText}>Bize</p>
         <h3 className={styles.sectionHeadText}>Ulaşın.</h3>
 
-        <form
-          ref={formRef}
-          onSubmit={handleSubmit}
-          className='mt-12 flex flex-col gap-8'
-        >
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>İsminiz</span>
+        <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">İsminiz</span>
             <input
-              type='text'
-              name='name'
-              value={form.name}
-              onChange={handleChange}
+              type="text"
+              name="name"
+              onChange={(e) => SetName(e.target.value)}
+              value={name}
               placeholder="Buraya giriniz"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>E-mail'iniz</span>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">
+              E-mail'iniz veya telefon numaranız
+            </span>
             <input
-              type='email'
-              name='email'
-              value={form.email}
-              onChange={handleChange}
+              type="email"
+              name="email"
+              onChange={(e) => SetEmail(e.target.value)}
+              value={email}
               placeholder="Buraya giriniz"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
-          <label className='flex flex-col'>
-            <span className='text-white font-medium mb-4'>İletmek isdediğiniz mesaj</span>
+          <label className="flex flex-col">
+            <span className="text-white font-medium mb-4">
+              İletmek isdediğiniz mesaj
+            </span>
             <textarea
               rows={7}
-              name='message'
-              value={form.message}
-              onChange={handleChange}
-              placeholder='Buraya yazınız'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              name="message"
+              onChange={(e) => SetMessage(e.target.value)}
+              value={message}
+              placeholder="Buraya yazınız"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
 
           <button
-            type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary  ease-in-out hover:bg-blue-500 ease-in-out duration-300 delay-150'
+            type="submit"
+            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary  ease-in-out hover:bg-blue-500 ease-in-out duration-300 delay-150"
           >
-            {loading ? "Gönderiliyor..." : "Gönder"}
+            {loading
+          ? "Gönderiliyor..."
+          : sent
+          ? "Gönderildi"
+          : "Gönder"} 
           </button>
         </form>
       </motion.div>
 
       <motion.div
         variants={slideIn("right", "tween", 0.2, 1)}
-        className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
+        className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
         <EarthCanvas />
       </motion.div>

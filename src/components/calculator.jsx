@@ -71,12 +71,12 @@ function Calculator() {
                 <option value="TRY">TRY</option>
               </select>
             </div>
-            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min  w-[4rem] md:w-full">
+            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min  w-[5rem] md:w-[7.5rem]">
               <input
                 type="text"
                 value={inputAmount}
                 onChange={(e) => setInputAmount(e.target.value)}
-                className="color-zinc-950  px-3 py-[0.25rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                className="color-zinc-950  px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
           </div>
@@ -106,12 +106,12 @@ function Calculator() {
                 <option value="USD">USD</option>
               </select>
             </div>
-            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min w-[4rem] md:w-full">
+            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min w-[5rem] md:w-[7.5rem]">
               <input
                 value={outputAmount}
                 readOnly
                 type="text"
-                className="color-zinc-950  px-3 py-[0.25rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                className="color-zinc-950  px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
           </div>
