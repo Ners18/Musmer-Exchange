@@ -10,18 +10,22 @@ function Calculator() {
   const [exchangeRate, setExchangeRate] = useState(null);
 
   // Function to calculate the exchange amount
+ 
+  const handleInputAmountChange = (value) => {
+    if (value === "") {
+      setInputAmount("0");
+      setOutputAmount("0");
+    } else {
+      setInputAmount(value);
+    }
+  };
   const calculateExchange = () => {
     if (!exchangeRate) return;
 
-    const calculatedAmount = parseFloat(inputAmount) * exchangeRate;
+    const parsedInputAmount = parseFloat(inputAmount);
+    const calculatedAmount = parsedInputAmount * exchangeRate;
     setOutputAmount(calculatedAmount.toFixed(2));
   };
-
-
-  if (inputAmount === ''){
-    setInputAmount(0)
-  }
-
   useEffect(() => {
     calculateExchange();
   }, [inputAmount]);
@@ -98,7 +102,7 @@ function Calculator() {
                 className="font-bold  p-1 bg-white text-black rounded-md"
                 id="output_currency"
                 value={outputCurrency}
-                onChange={(e) => setOutputCurrency(e.target.value)}
+                onChange={(e) => handleInputAmountChange(setOutputCurrency(e.target.value))}
               >
                 <option value="EUR">EUR</option>
                 <option value="TRY">TRY</option>
@@ -109,6 +113,7 @@ function Calculator() {
             <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min w-[5rem] md:w-[7.5rem]">
               <input
                 value={outputAmount}
+                onChange={(e) => handleInputAmountChange(e.target.value)}
                 readOnly
                 type="text"
                 className="color-zinc-950  px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"

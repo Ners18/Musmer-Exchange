@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
-import { eurogif, dolar,dolargif, Poundgif } from "../assets";
+import { eurogif, dolar,dolargif, Poundgif, euro, Pound } from "../assets";
 
 
 const MyServiceCard = ({ index, buying, seling, icon, currencyPair }) => (
@@ -110,19 +110,19 @@ const Hero = () => {
           </div>
           <div className="md:mt-20 sm:mt-[2rem] gap-[2rem] flex font-bold md:gap-10 flex-col md:flex-row justify-center md:items-center">
             <MyServiceCard
-              icon={dolargif}
+              icon={dolar}
               buying={USDtoTL}
               seling={USDtoTLs}
               currencyPair="USD / TL"
             />
             <MyServiceCard
-              icon={eurogif}
+              icon={euro}
               buying={EURtoTL}
               seling={EURtoTLs}
               currencyPair="EURO / TL"
             />
             <MyServiceCard
-              icon={Poundgif}
+              icon={Pound}
               buying={GBPtoTL}
               seling={GBPtoTLs}
               currencyPair="GBP / TL"
