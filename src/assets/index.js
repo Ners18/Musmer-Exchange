@@ -13,7 +13,8 @@ import Poundgif from "./tech/poundSpinning.gif";
 import dolargif from "./tech/dollarSpinning.gif";
 import eurogif from "./tech/euroSpinning.gif";
 import threejs from "./tech/threejs.svg";
-
+import euro from "./tech/euroo.png"
+import Pound from "./tech/poundd.png"
 
 import orangeup from "./tech/orangeup.png";
 import orangeupother from "./tech/orangeupother.png";
@@ -41,6 +42,8 @@ export {
   musmerpicc,
   musmerpic,
 
+  Pound,
+  euro,
   dolar,
   eurogif,
   dolargif,

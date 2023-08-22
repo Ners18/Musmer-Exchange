@@ -10,6 +10,7 @@ import { slideIn } from "../utils/motion";
 const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const [name, SetName] = useState("");
   const [email, SetEmail] = useState("");
@@ -38,6 +39,14 @@ const Contact = () => {
         setTimeout(()=>{
           setSent(false);
         },3000);
+      })
+      .catch((error) => {
+        console.error(error);
+        setFailed(true); // Set failed status to true
+        setLoading(false);
+        setTimeout(() => {
+          setFailed(false);
+        }, 3000);
       });
   };
 
@@ -93,12 +102,18 @@ const Contact = () => {
 
           <button
             type="submit"
-            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary  ease-in-out hover:bg-blue-500 ease-in-out duration-300 delay-150"
+            className={`bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary  ease-in-out hover:bg-blue-500 ease-in-out duration-300 delay-150 ${
+              loading ? "cursor-not-allowed" : ""
+            } ${sent ? "bg-green-500" : ""} ${failed ? "bg-red-500" : ""}`}
+            disabled={loading}
+            
           >
             {loading
           ? "Gönderiliyor..."
           : sent
           ? "Gönderildi"
+          :failed
+          ?"Gönderilemedi"
           : "Gönder"} 
           </button>
         </form>

@@ -4,27 +4,26 @@ import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
 function Calculator() {
   const [inputCurrency, setInputCurrency] = useState("TRY");
-  const [inputAmount, setInputAmount] = useState("0");
+  const [inputAmount, setInputAmount] = useState("0");  
   const [outputCurrency, setOutputCurrency] = useState("USD");
-  const [outputAmount, setOutputAmount] = useState("0");
+  const [outputAmount, setOutputAmount] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
 
-  // Function to calculate the exchange amount
+  const handleInputAmountChange = (value) => {
+    setInputAmount(value);
+  };
+
   const calculateExchange = () => {
     if (!exchangeRate) return;
 
-    const calculatedAmount = parseFloat(inputAmount) * exchangeRate;
-    setOutputAmount(calculatedAmount.toFixed(2));
+    const inputAmountValue = parseFloat(inputAmount);
+    const calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+    return calculatedAmount.toFixed(2);
   };
 
-
-  if (inputAmount === ''){
-    setInputAmount(0)
-  }
-
   useEffect(() => {
-    calculateExchange();
-  }, [inputAmount]);
+    setOutputAmount(calculateExchange());
+  }, [inputAmount, exchangeRate]);
 
   useEffect(() => {
     const fetchExchangeRate = async () => {
@@ -42,26 +41,19 @@ function Calculator() {
   }, [inputCurrency, outputCurrency]);
 
   useEffect(() => {
-    const calculateExchange = () => {
-      if (!exchangeRate) return;
-
-      const calculatedAmount = parseFloat(inputAmount) * exchangeRate;
-      setOutputAmount(calculatedAmount.toFixed(2));
-    };
-
     calculateExchange();
-  }, [inputAmount, exchangeRate]);
+  }, [exchangeRate]);
 
   return (
-    <div className=" green-pink-gradient p-[1px] rounded-[20px] shadow-card  flex-grow">
+    <div className="green-pink-gradient p-[1px] rounded-[20px] shadow-card flex-grow">
       <div className="bg-gray-900 rounded-[20px] py-5 px-12 min-h-[180px] md:px-2 flex justify-evenly items-center flex-col flex-grow">
-        <div className="  p-[10px] rounded-[20px] ">
-          <div className="flex gap-4  rounded-[20px] ">
+        <div className="p-[10px] rounded-[20px] ">
+          <div className="flex gap-4 rounded-[20px] ">
             <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min">
               <select
                 value={inputCurrency}
                 onChange={(e) => setInputCurrency(e.target.value)}
-                className="font-bold text-1.5rem p-1 bg-white  text-black rounded-md"
+                className="font-bold text-1.5rem p-1 bg-white text-black rounded-md"
                 name=""
                 id="input_currency"
               >
@@ -71,22 +63,22 @@ function Calculator() {
                 <option value="TRY">TRY</option>
               </select>
             </div>
-            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min  w-[5rem] md:w-[7.5rem]">
+            <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min w-[5rem] md:w-[7.5rem]">
               <input
                 type="text"
                 value={inputAmount}
-                onChange={(e) => setInputAmount(e.target.value)}
-                className="color-zinc-950  px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                onChange={(e) => handleInputAmountChange(e.target.value)}
+                className="color-zinc-950 px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
           </div>
-          <div className="flex w-full text-center items-center  justify-center p-5  ">
+          <div className="flex w-full text-center items-center justify-center p-5 ">
             <button
               onClick={() => {
                 setInputCurrency(outputCurrency);
                 setOutputCurrency(inputCurrency);
               }}
-              className="flex items-center justify-center bg-slate-800 rounded-full p-2 w-[4rem] h-[4rem] text-[2rem]  font-bold border-solid border-2 border-sky-500 active:translate-y-0 bg-gray-800 hover:bg-gray-700 active:bg-gray-900 active:shadow-md active:translate-y-[-2px] p-4 "
+              className="flex items-center justify-center bg-slate-800 rounded-full p-2 w-[4rem] h-[4rem] text-[2rem] font-bold border-solid border-2 border-sky-500 active:translate-y-0 bg-gray-800 hover:bg-gray-700 active:bg-gray-900 active:shadow-md active:translate-y-[-2px] p-4 "
               id="exchange"
             >
               <HiMiniArrowPathRoundedSquare className="" />
@@ -95,7 +87,7 @@ function Calculator() {
           <div className="flex gap-4">
             <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min">
               <select
-                className="font-bold  p-1 bg-white text-black rounded-md"
+                className="font-bold p-1 bg-white text-black rounded-md"
                 id="output_currency"
                 value={outputCurrency}
                 onChange={(e) => setOutputCurrency(e.target.value)}
@@ -111,11 +103,11 @@ function Calculator() {
                 value={outputAmount}
                 readOnly
                 type="text"
-                className="color-zinc-950  px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                className="color-zinc-950 px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
           </div>
-          <div className=" w-full flex text-center justify-center p-3 flex-grow ">
+          <div className="w-full flex text-center justify-center p-3 flex-grow ">
             <p>
               Changing From{" "}
               <span className="text-[#00cea8]">{inputCurrency} </span>

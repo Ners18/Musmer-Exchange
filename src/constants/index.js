@@ -34,7 +34,7 @@ export const navLinks = [
 let services = [
   {
     title: "Dollar", 
-    icon: dolargif,
+    icon: dolar,
   },
   {
     title: "Euro",
@@ -112,15 +112,15 @@ const projects = [
     tags: [
       {
         name: "Hızlı",
-        color: "blue-text-gradient",
+        color: "text-teal-300",
       },
       {
         name: "Güvenilir",
-        color: "green-text-gradient",
+        color: "text-teal-400",
       },
       {
         name: "Doğru",
-        color: "pink-text-gradient",
+        color: "text-teal-500",
       },
     ],
     image: musmerpic,
@@ -133,15 +133,15 @@ const projects = [
     tags: [
       {
         name: "Çalışkan",
-        color: "blue-text-gradient",
+        color: "text-fuchsia-400",
       },
       {
         name: "Dürüst",
-        color: "green-text-gradient",
+        color: "text-fuchsia-500",
       },
       {
         name: "Gerçek",
-        color: "pink-text-gradient",
+        color: "text-fuchsia-600",
       },
     ],
     image: musmerpicc,
@@ -154,15 +154,15 @@ const projects = [
     tags: [
       {
         name: "Yükselen",
-        color: "blue-text-gradient",
+        color: "text-indigo-200",
       },
       {
         name: "Stabil",
-        color: "green-text-gradient",
+        color: "text-indigo-300",
       },
       {
         name: "En iyi oranlar",
-        color: "pink-text-gradient",
+        color: "text-indigo-400",
       },
     ],
     image: musmerpiccc,
