@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
 function Calculator() {
-  const [inputCurrency, setInputCurrency] = useState("TRY");
+  const [inputCurrency, setInputCurrency] = useState("USD");
   const [inputAmount, setInputAmount] = useState("0");  
-  const [outputCurrency, setOutputCurrency] = useState("GBP");
+  const [outputCurrency, setOutputCurrency] = useState("EUR");
   const [outputAmount, setOutputAmount] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
 
@@ -57,7 +57,19 @@ function Calculator() {
             console.log("GBP-TRY : ", data[2].selling_price);
             setExchangeRate(data[2].selling_price);
             break;
-          
+          // between currencies
+          case 'USD-EUR':
+            const usdToTl = data[0].selling_price
+            const tlToEur= data[1].buying_price
+            const usdToEuro = usdToTl/tlToEur
+            setExchangeRate(usdToEuro.toFixed(2))
+            break;
+          case 'EUR-USD':
+            const eurToTl = data[1].selling_price
+            const tlToUsd= data[0].buying_price
+            const eurToUsd = eurToTl*tlToUsd
+            setExchangeRate(eurToUsd.toFixed(2))
+            break;
           default:
             // Handle the default case if the currency pair is not recognized
             break;
@@ -100,6 +112,13 @@ function Calculator() {
         break;
       case 'GBP-TRY':
         calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+        break;
+      // change between currencies
+      case 'USD-EUR':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+        break;
+      case 'EUR-USD':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
         break;
       default:
         // Handle other currency pairs if needed
