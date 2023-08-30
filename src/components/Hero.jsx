@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
 import { fadeIn } from "../utils/motion";
@@ -37,60 +36,49 @@ const MyServiceCard = ({ index, buying, seling, icon, currencyPair }) => (
   </div>
 );
 const Hero = () => {
-  const [exchangeRatesUsd, setExchangeRatesUsd] = useState({});
-  const [exchangeRatesEuro, setExchangeRatesEuro] = useState({});
-  const [exchangeRatesGbp, setExchangeRatesGbp] = useState({});
+  const [exchangeRates, setExchangeRates] = useState({
+    USDtoTL: 0,
+    EURtoTL: 0,
+    GBPtoTL: 0,
+    USDtoTLs: 0,
+    EURtoTLs: 0,
+    GBPtoTLs: 0,
+  });
 
   useEffect(() => {
-    const fetchExchangeRatesUsd = async () => {
+    async function fetchData() {
       try {
-        const response = await axios.get(
-          "https://open.er-api.com/v6/latest/usd"
+        const response = await fetch(
+          "http://95.0.125.26:8008/api/exchangeratestoday/"
         );
-        // console.log(response);
-        setExchangeRatesUsd(response.data.rates);
-      } catch (error) {
-        console.log("Error fetching exchange rates:", error);
-      }
-    };
-    fetchExchangeRatesUsd();
 
-    const fetchExchangeRatesEuro = async () => {
-      try {
-        const response = await axios.get(
-          "https://open.er-api.com/v6/latest/eur"
-        );
-        // console.log(response);
-        setExchangeRatesEuro(response.data.rates);
-      } catch (error) {
-        console.log("Error fetching exchange rates:", error);
-      }
-    };
-    fetchExchangeRatesEuro();
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
 
-    const fetchExchangeRatesGbp = async () => {
-      try {
-        const response = await axios.get(
-          "https://open.er-api.com/v6/latest/gbp"
-        );
-        // console.log(response);
-        setExchangeRatesGbp(response.data.rates);
+        const data = await response.json();
+        console.log(data);
+
+        // Update state with the fetched data
+        setExchangeRates({
+          USDtoTL: data[0].selling_price,
+          EURtoTL: data[1].selling_price,
+          GBPtoTL: data[2].selling_price,
+          USDtoTLs: data[0].buying_price,
+          EURtoTLs: data[1].buying_price,
+          GBPtoTLs: data[2].buying_price,
+        });
       } catch (error) {
-        console.log("Error fetching exchange rates:", error);
+        console.error("Error fetching data:", error);
       }
-    };
-    fetchExchangeRatesGbp();
+    }
+
+    fetchData();
   }, []);
-  const formatRate = (rate) => {
-    return parseFloat(rate).toFixed(2);
-  };
-  const USDtoTL = formatRate(exchangeRatesUsd.TRY);
-  const EURtoTL = formatRate(exchangeRatesEuro.TRY);
-  const GBPtoTL = formatRate(exchangeRatesGbp.TRY);
 
-  const USDtoTLs = formatRate(exchangeRatesUsd.TRY + 0.3);
-  const EURtoTLs = formatRate(exchangeRatesEuro.TRY + 0.35);
-  const GBPtoTLs = formatRate(exchangeRatesGbp.TRY + 0.45);
+  // Now you can access exchangeRates in your component
+  const { USDtoTL, EURtoTL, GBPtoTL, USDtoTLs, EURtoTLs, GBPtoTLs } = exchangeRates;
+
 
   return (
     //<>

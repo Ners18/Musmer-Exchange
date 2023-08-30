@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
 function Calculator() {
   const [inputCurrency, setInputCurrency] = useState("TRY");
   const [inputAmount, setInputAmount] = useState("0");  
-  const [outputCurrency, setOutputCurrency] = useState("USD");
+  const [outputCurrency, setOutputCurrency] = useState("GBP");
   const [outputAmount, setOutputAmount] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
 
@@ -13,13 +12,7 @@ function Calculator() {
     setInputAmount(value);
   };
 
-  const calculateExchange = () => {
-    if (!exchangeRate) return;
-
-    const inputAmountValue = parseFloat(inputAmount);
-    const calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
-    return calculatedAmount.toFixed(2);
-  };
+  
 
   useEffect(() => {
     setOutputAmount(calculateExchange());
@@ -28,21 +21,94 @@ function Calculator() {
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const response = await axios.get(
-          `https://open.er-api.com/v6/latest/${inputCurrency}`
+        const response = await fetch(
+          "http://95.0.125.26:8008/api/exchangeratestoday/"
         );
-        setExchangeRate(response.data.rates[outputCurrency]);
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        console.log(data);
+
+        switch (`${inputCurrency}-${outputCurrency}`) {
+          case 'TRY-USD':
+            console.log("TRY-USD : ", data[0].buying_price);
+            setExchangeRate(data[0].buying_price);
+            break;
+          case 'TRY-EUR':
+            console.log("TRY-EUR : ", data[1].buying_price);
+            setExchangeRate(data[1].buying_price);
+            break;
+          case 'TRY-GBP':
+            console.log("TRY-GBP : ", data[2].buying_price);
+            setExchangeRate(data[2].buying_price);
+            break;
+          case 'USD-TRY':
+            console.log("USD-TRY : ", data[0].selling_price);
+            setExchangeRate(data[0].selling_price);
+            break;
+          case 'EUR-TRY':
+            console.log("EUR-TRY : ", data[1].selling_price);
+            setExchangeRate(data[1].selling_price);
+            break;
+          case 'GBP-TRY':
+            console.log("GBP-TRY : ", data[2].selling_price);
+            setExchangeRate(data[2].selling_price);
+            break;
+          
+          default:
+            // Handle the default case if the currency pair is not recognized
+            break;
+        }
       } catch (error) {
-        console.log("Error fetching exchange rate:", error);
+        console.error("Error fetching data:", error);
       }
+    
     };
 
     fetchExchangeRate();
-  }, [inputCurrency, outputCurrency]);
+  }, []);
 
   useEffect(() => {
     calculateExchange();
   }, [exchangeRate]);
+  
+  const calculateExchange = () => {
+    if (!exchangeRate) return;
+
+    const inputAmountValue = parseFloat(inputAmount);
+    let calculatedAmount = 0;
+
+    
+    switch (`${inputCurrency}-${outputCurrency}`) {
+      case 'TRY-USD':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
+        break;
+      case 'TRY-EUR':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
+        break;
+      case 'TRY-GBP':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
+        break;
+      case 'USD-TRY':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+        break;
+      case 'EUR-TRY':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+        break;
+      case 'GBP-TRY':
+        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
+        break;
+      default:
+        // Handle other currency pairs if needed
+        break;
+    }
+  
+    return calculatedAmount.toFixed(2);
+
+  };
 
   return (
     <div className="green-pink-gradient p-[1px] rounded-[20px] shadow-card flex-grow">
@@ -99,12 +165,14 @@ function Calculator() {
               </select>
             </div>
             <div className="green-pink-gradient p-[1px] rounded-[10px] shadow-card h-min w-[5rem] md:w-[7.5rem]">
-              <input
-                value={outputAmount}
+              <span
+                
                 readOnly
                 type="text"
                 className="color-zinc-950 px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
-              />
+              >
+                {outputAmount}
+              </span>
             </div>
           </div>
           <div className="w-full flex text-center justify-center p-3 flex-grow ">
