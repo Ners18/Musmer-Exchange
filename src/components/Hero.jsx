@@ -98,19 +98,19 @@ const Hero = () => {
           </div>
           <div className="md:mt-20 sm:mt-[2rem] gap-[2rem] flex font-bold md:gap-10 flex-col md:flex-row justify-center md:items-center">
             <MyServiceCard
-              icon={dolar}
+              icon={dolargif}
               buying={USDtoTL}
               seling={USDtoTLs}
               currencyPair="USD / TL"
             />
             <MyServiceCard
-              icon={euro}
+              icon={eurogif}
               buying={EURtoTL}
               seling={EURtoTLs}
               currencyPair="EURO / TL"
             />
             <MyServiceCard
-              icon={Pound}
+              icon={Poundgif}
               buying={GBPtoTL}
               seling={GBPtoTLs}
               currencyPair="GBP / TL"
