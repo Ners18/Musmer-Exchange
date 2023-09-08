@@ -172,7 +172,7 @@ function Calculator() {
                 
                 readOnly
                 type="text"
-                className="color-zinc-950 px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+                className="color-zinc-950 px-2 py-[0.35rem] bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 min-h-[2rem]"
               >
                 {outputAmount}
               </span>
