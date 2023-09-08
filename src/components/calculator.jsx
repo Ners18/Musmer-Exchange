@@ -4,7 +4,7 @@ import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 function Calculator() {
   const [inputCurrency, setInputCurrency] = useState("USD");
   const [inputAmount, setInputAmount] = useState("0");  
-  const [outputCurrency, setOutputCurrency] = useState("EUR");
+  const [outputCurrency, setOutputCurrency] = useState("TRY");
   const [outputAmount, setOutputAmount] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
 
@@ -57,38 +57,6 @@ function Calculator() {
             console.log("GBP-TRY : ", data[2].selling_price);
             setExchangeRate(data[2].selling_price);
             break;
-          // between usd currencies
-          case 'USD-EUR':
-            const usdToTl = data[0].buying_price
-            const tlToEur= data[1].selling_price
-            const usdToEuro = usdToTl/tlToEur
-            setExchangeRate(usdToEuro.toFixed(2))
-            break;
-          case 'EUR-USD':
-            const eurToTl = data[1].buying_price
-            const tlToUsd= data[0].selling_price
-            const eurToUsd = eurToTl*tlToUsd
-            setExchangeRate(eurToUsd.toFixed(2))
-            break;
-          case 'USD-GBP':
-            const usdToTlp = data[0].buying_price
-            const tlToGbp= data[2].selling_price
-            const usdToGbp = usdToTlp/tlToGbp
-            setExchangeRate(usdToGbp.toFixed(2))
-            break;
-          case 'GBP-USD':
-            const gbpToTl = data[2].buying_price
-            const tlToUsdp= data[0].selling_price
-            const gbpToUsd = gbpToTl*tlToUsdp
-            setExchangeRate(gbpToUsd.toFixed(2))
-          break;
-          // change between euro and other currencies
-          case 'EUR-USD':
-            const tlToEure = data[1].buying_price
-            const usdToTle = data[0].selling_price
-            const eurToUsde = tlToEure/usdToTle
-            setExchangeRate(eurToUsde.toFixed(2))
-          break;
           
           default:
             // Handle the default case if the currency pair is not recognized
@@ -133,35 +101,8 @@ function Calculator() {
       case 'GBP-TRY':
         calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
         break;
-      // change between usd and other currencies
-      case 'USD-EUR':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
-        break;
-      case 'EUR-USD':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
-        break;
-      case 'USD-GBP':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
-        break;
-      case 'GBP-USD':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
-        break;
-      // change between usd and other currencies
-      case 'EUR-USD':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
-        break;
-      case 'USD-EUR':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
-        break;
-      case 'EUR-GBP':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue * exchangeRate;
-        break;
-      case 'GBP-EUR':
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue / exchangeRate;
-        break;
-        
       default:
-        calculatedAmount = isNaN(inputAmountValue) ? 0 : inputAmountValue;
+        // Handle other currency pairs if needed
         break;
     }
   
