@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { HiMiniArrowPathRoundedSquare } from "react-icons/hi2";
 
 function Calculator() {
-  const [inputCurrency, setInputCurrency] = useState("USD");
+  const [inputCurrency, setInputCurrency] = useState("TRY");
   const [inputAmount, setInputAmount] = useState("0");  
-  const [outputCurrency, setOutputCurrency] = useState("TRY");
+  const [outputCurrency, setOutputCurrency] = useState("GBP");
   const [outputAmount, setOutputAmount] = useState("");
   const [exchangeRate, setExchangeRate] = useState(null);
 
@@ -21,55 +21,58 @@ function Calculator() {
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
-        const response = await fetch(
-          "http://95.0.125.26:8008/api/exchangeratestoday/"
-        );
-
+        const response = await fetch("http://95.0.125.26:8008/api/exchangeratestoday/");
+  
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-
+  
         const data = await response.json();
-        console.log(data);
-
-        switch (`${inputCurrency}-${outputCurrency}`) {
-          case 'TRY-USD':
-            console.log("TRY-USD : ", data[0].buying_price);
-            setExchangeRate(data[0].buying_price);
-            break;
-          case 'TRY-EUR':
-            console.log("TRY-EUR : ", data[1].buying_price);
-            setExchangeRate(data[1].buying_price);
-            break;
-          case 'TRY-GBP':
-            console.log("TRY-GBP : ", data[2].buying_price);
-            setExchangeRate(data[2].buying_price);
-            break;
-          case 'USD-TRY':
-            console.log("USD-TRY : ", data[0].selling_price);
-            setExchangeRate(data[0].selling_price);
-            break;
-          case 'EUR-TRY':
-            console.log("EUR-TRY : ", data[1].selling_price);
-            setExchangeRate(data[1].selling_price);
-            break;
-          case 'GBP-TRY':
-            console.log("GBP-TRY : ", data[2].selling_price);
-            setExchangeRate(data[2].selling_price);
-            break;
-          
-          default:
-            // Handle the default case if the currency pair is not recognized
-            break;
+        // console.log(data);
+  
+        const currencyPair = `${inputCurrency}-${outputCurrency}`;
+        if (currencyPair === 'TRY-USD') {
+          // console.log("TRY-USD : ", data[0].buying_price);
+          setExchangeRate(data[0].buying_price);
+          // console.log("Exchange Rate:", data[0].buying_price); 
+        } else if (currencyPair === 'TRY-EUR') {
+          // console.log("TRY-EUR : ", data[1].buying_price);
+          setExchangeRate(data[1].buying_price);
+          // console.log("Exchange Rate:", data[1].buying_price); 
+        } else if (currencyPair === 'TRY-GBP') {
+          // console.log("TRY-GBP : ", data[2].buying_price);
+          setExchangeRate(data[2].buying_price);
+          // console.log("Exchange Rate:", data[2].buying_price); 
+        } else if (currencyPair === 'USD-TRY') {
+          // console.log("USD-TRY : ", data[0].selling_price);
+          setExchangeRate(data[0].selling_price);
+          // console.log("Exchange Rate:", data[0].selling_price); 
+        } else if (currencyPair === 'EUR-TRY') {
+          // console.log("EUR-TRY : ", data[1].selling_price);
+          setExchangeRate(data[1].selling_price);
+          // console.log("Exchange Rate:", data[1].selling_price); 
+        } else if (currencyPair === 'GBP-TRY') {
+          // console.log("GBP-TRY : ", data[2].selling_price);
+          setExchangeRate(data[2].selling_price);
+          // console.log("Exchange Rate:", data[2].selling_price); 
+        } else {
+          // alert('Invalid currency pair');
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
-    
     };
-
-    fetchExchangeRate();
-  }, []);
+  
+    const intervalId = setInterval(() => {
+      fetchExchangeRate();
+    }, 500); // Fetch data every 1 second
+  
+    // Cleanup function to clear the interval when the component unmounts
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [inputCurrency, outputCurrency]);
+  
 
   useEffect(() => {
     calculateExchange();
